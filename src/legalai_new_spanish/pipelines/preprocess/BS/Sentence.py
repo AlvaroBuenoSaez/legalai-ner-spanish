@@ -32,6 +32,7 @@ class Sentence:
   
         self.link = self.get_link(soup)
         self.sections=self.get_sections(soup)
+        self.info=self.get_info(soup)
 
 
     def get_link(self,soup):
@@ -83,12 +84,22 @@ class Sentence:
         
         return out
 
-
+    ''' Detects the info printed on tables '''
     def get_info(self,soup):
+        def get_table(table):
+            out={}
+            for row in table.find_all("tr"):
+                elements=row.find_all("td")
+                if len(elements)==2:
+                    out[elements[0].text.strip()]=elements[1].text.strip()
+
+            return out
+
         out={}
         result=soup.find("div", {"id": "ficha-tecnica"})
         tables=result.find_all("table")
-        print(len(tables))
+        for table in tables:
+            out|=get_table(table)
         return out
 
     def get_concepts(self,soup):
