@@ -9,3 +9,18 @@
 tc_sentences:
   type: json.JSONDataSet
   filepath: data/02_intermediate/tc_sentences.json
+
+tc_relevant_data:
+  type: json.JSONDataSet
+  filepath: data/02_intermediate/tc_relevant_data.json
+
+#08_reporting
+tc_reports:
+  type: json.JSONDataSet
+  filepath: data/08_reporting/tc_reports.json
+
+tc_results:
+  type: json.JSONDataSet
+  filepath: data/08_reporting/tc_results.json
+
+
