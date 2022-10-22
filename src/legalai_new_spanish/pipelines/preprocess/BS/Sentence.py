@@ -40,7 +40,8 @@ class Sentence:
         link = results.find("a",{"id":"es-language_link"})
         link =link["href"]
         return self.main_link+link.strip("/")
-        
+
+    ''' Detects and splits the diferent sections'''    
     def get_sections(self,soup):
 
         def get_section_1(section:Tag)->dict:#para fundamentos y antecedentes
@@ -82,9 +83,12 @@ class Sentence:
         
         return out
 
+
     def get_info(self,soup):
         out={}
-
+        result=soup.find("div", {"id": "ficha-tecnica"})
+        tables=result.find_all("table")
+        print(len(tables))
         return out
 
     def get_concepts(self,soup):
