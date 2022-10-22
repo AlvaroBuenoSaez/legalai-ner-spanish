@@ -3,3 +3,6 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://kedro.readthedocs.io/en/0.18.3/kedro_project_setup/configuration.html#parameters
+
+#Set TC dataset path in /data folder
+raw_tc: 01_raw/data
