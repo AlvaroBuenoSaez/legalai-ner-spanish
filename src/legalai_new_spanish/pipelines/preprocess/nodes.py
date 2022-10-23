@@ -9,6 +9,8 @@ import os
 from .BS.Sentence import Sentence
 from tqdm import tqdm
 
+
+
 def process_tc(file_path:str)-> pd.DataFrame:
     out={}
     reports={}
@@ -78,6 +80,44 @@ def extract_relevant_data(sentences:dict)->dict:
     all_magistrados=set([magistrado.strip().capitalize() if magistrado.startswith("Do") else "Doña "+ magistrado for magistrados in all_magistrados for magistrado in magistrados.split(" y doña ")])
     out["info.Magistrados"]=list(all_magistrados)
 
-
-
     return out
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+def plot_results(results:dict,relevant_data:dict):
+    plot_relevant_data={}
+    for key in relevant_data:
+        if type(relevant_data[key])==int or type(relevant_data[key])==float:
+            plot_relevant_data[key]=relevant_data[key]
+    plot_results={}
+    for key in results:
+        if type(results[key])==float:
+            plot_results[key]=round(results[key],2)
+
+    def dict_to_table(d:dict):
+        column_headers = ["Values"]
+        row_headers = [k for k in d.keys()] 
+        cell_text = [[d[k]] for k in d.keys()] 
+        fig, ax = plt.subplots() 
+        ax.set_axis_off() 
+
+        rcolors = plt.cm.BuPu(np.full(len(row_headers), 0.1))
+        ccolors = plt.cm.BuPu(np.full(len(column_headers), 0.1))
+        
+        the_table = plt.table(cellText=cell_text,
+                            rowLabels=row_headers,
+                            rowColours=rcolors,
+                            rowLoc='right',
+                            colColours=ccolors,
+                            colLabels=column_headers,
+                            colWidths=[.2,.1],
+                            loc='center',
+                            # bbox=(0.0,0.0,6.4,4.8)
+                            )
+        return fig
+    fig_1=dict_to_table(plot_results)
+    fig_2=dict_to_table(plot_relevant_data)
+    fig_1.tight_layout()
+    fig_2.tight_layout()
+    return fig_1,fig_2
