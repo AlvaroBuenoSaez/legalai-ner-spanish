@@ -14,18 +14,18 @@ def create_pipeline(**kwargs) -> Pipeline:
             #     outputs=["tc_sentences","tc_reports"],
             #     name="process_tc",
             # ),
-            # node(
-            #     func=get_results,
-            #     inputs=["tc_reports"],
-            #     outputs="tc_results",
-            #     name="tc_reports",
-            # ),
-            # node(
-            #     func=extract_relevant_data,
-            #     inputs=["tc_sentences"],
-            #     outputs="tc_relevant_data",
-            #     name="extract_relevant_data",
-            # ),   
+            node(
+                func=get_results,
+                inputs=["tc_reports"],
+                outputs="tc_results",
+                name="tc_reports",
+            ),
+            node(
+                func=extract_relevant_data,
+                inputs=["tc_sentences"],
+                outputs="tc_relevant_data",
+                name="extract_relevant_data",
+            ),   
             node(
                 func=plot_results,
                 inputs=["tc_results","tc_relevant_data"],
