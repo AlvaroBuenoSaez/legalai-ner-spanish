@@ -42,5 +42,4 @@ The pipelines are:
 - preprocess: processes html files to a single json, generates and plots results and extracts relevant data in html as names, descriptions, law quotes, etc.
 
 ## Results
-![alt text](data/08_reporting/bar_relevant_data.png)
-
+<img align="left" src="https://github.com/AlvaroBuenoSaez/legalai-ner-spanish/data/08_reporting/bar_relevant_data.png">
