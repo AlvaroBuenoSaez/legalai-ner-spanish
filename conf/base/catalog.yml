@@ -23,4 +23,14 @@ tc_results:
   type: json.JSONDataSet
   filepath: data/08_reporting/tc_results.json
 
+bar_results:
+    type: matplotlib.MatplotlibWriter
+    filepath: data/08_reporting/bar_results.png
+    save_args:
+      bbox_inches: tight
 
+bar_relevant_data:
+    type: matplotlib.MatplotlibWriter
+    filepath: data/08_reporting/bar_relevant_data.png
+    save_args:
+      bbox_inches: tight
