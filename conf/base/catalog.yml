@@ -14,7 +14,41 @@ tc_relevant_data:
   type: json.JSONDataSet
   filepath: data/02_intermediate/tc_relevant_data.json
 
+tc_sentences_text:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_sentences_text.csv
+
+tc_entities:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_entities.csv
+
+tc_entities_fixed:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_entities_fixed.csv
+
+tc_entities_conll:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_entities_conll.csv
+
+tc_entities_capitel:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_entities_capitel.csv
+
+tc_entities_ancora:
+  type: pandas.CSVDataSet
+  filepath: data/02_intermediate/tc_entities_ancora.csv
+
+#03_primary
+tc_NER:
+  type: pandas.CSVDataSet
+  filepath: data/03_primary/tc_NER.csv
+
+
 #08_reporting
+tc_info:
+  type: pandas.CSVDataSet
+  filepath: data/08_reporting/tc_info.csv
+
 tc_reports:
   type: json.JSONDataSet
   filepath: data/08_reporting/tc_reports.json

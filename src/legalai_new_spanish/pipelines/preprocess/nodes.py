@@ -2,7 +2,6 @@
 This is a boilerplate pipeline 'preprocess'
 generated using Kedro 0.18.3
 """
-from email.quoprimime import quote
 from unittest import result
 import pandas as pd
 import os
@@ -45,6 +44,27 @@ def get_results(reports:dict)->dict:
             results["NO_"+p+"_files"]=[pdf for pdf in reports if p in reports[pdf] if not reports[pdf][p]][0:10]
     return results
 
+def to_csv(sentences:dict)->pd.DataFrame:
+    data=[]
+    for key in tqdm(sentences):
+        sentence=sentences[key]
+        name=sentence["name"]
+        pdf=sentence["pdf"]
+        
+        for section in sentence["sections"]:
+            text=[]
+            for field in sentence["sections"][section]:
+                field_content=sentence["sections"][section][field]
+                if type(field_content)==str:
+                    text.append(field_content)
+                elif type(field_content)==list:
+                    text.extend(field_content)
+
+            text="\n".join(text)
+            data.append({"name":name,"pdf":pdf,"text":text,"section":section})
+
+    
+    return pd.DataFrame.from_dict(data)
 
 def extract_relevant_data(sentences:dict)->dict:
 
