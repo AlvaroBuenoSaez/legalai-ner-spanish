@@ -4,7 +4,7 @@ generated using Kedro 0.18.3
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
-from .nodes import plot_results, process_tc,get_results,extract_relevant_data
+from .nodes import plot_results, process_tc,get_results,extract_relevant_data,to_csv
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
@@ -31,6 +31,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["tc_results","tc_relevant_data"],
                 outputs=["bar_results","bar_relevant_data"],
                 name="plot_results"
+            ),
+             node(
+                func=to_csv,
+                inputs="tc_sentences",
+                outputs="tc_sentences_text",
+                name="to_CSV"
             )
     ]
 )
