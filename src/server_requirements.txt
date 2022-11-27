@@ -1,0 +1,3 @@
+pandas
+transformers==4.20.0
+tqdm
