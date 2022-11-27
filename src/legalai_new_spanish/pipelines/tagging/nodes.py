@@ -113,18 +113,23 @@ def process_data(data,pipe,model_name):
     return out
 
 def infer_ancora(data:pd.DataFrame,config:dict):
+    frac=config["frac"] if config and "frac" in config else 0.0001
+    print(frac)
     data=data.sample(frac=frac, replace=True)
     ancora=pipe_ancora()
     out=process_data(data,ancora,"ancora")
     return pd.DataFrame.from_records(out)
 
 def infer_capitel(data:pd.DataFrame,config:dict):
+    frac=config["frac"] if config and "frac" in config else 0.0001
+
     data=data.sample(frac=frac, replace=True)
     capitel=pipe_capitel()
     out=process_data(data,capitel,"capitel")
     return pd.DataFrame.from_records(out)
 
 def infer_conll(data:pd.DataFrame,config:dict):
+    frac=config["frac"] if config and "frac" in config else 0.0001
     data=data.sample(frac=frac, replace=True)
     conll=pipe_conll()
     out=process_data(data,conll,"conll")
